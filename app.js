@@ -23,12 +23,12 @@ require("dotenv").config();
 
 const client_id = process.env.clientID; // Your client id
 const client_secret = process.env.clientSecret; // Your secret
-const privateKey = fs.readFileSync("AuthKey_A8FKGGUQP3.p8").toString();
+const privateKey = fs.readFileSync("./key.p8").toString();
 const teamId = process.env.teamId;
 const keyId = process.env.keyId;
 
-var redirect_uri = "https://receiptify.herokuapp.com/callback"; // Your redirect uri
-// var redirect_uri = "http://localhost:3000/callback";
+// var redirect_uri = "https://receiptify.herokuapp.com/callback"; // Your redirect uri
+var redirect_uri = "http://localhost:3000/callback";
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
