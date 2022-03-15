@@ -1,4 +1,4 @@
 node_modules/
 .env
-public/config.js
+config.js
 AuthKey_A8FKGGUQP3.p8

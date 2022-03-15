@@ -22,7 +22,13 @@ const cors = require("cors");
 require("dotenv").config();
 
 const client_id = process.env.clientID; // Your client id
+console.log(client_id);
 const client_secret = process.env.clientSecret; // Your secret
+const apple_token = process.env.token 
+
+// const client_id = '9ba3c2c9e65e43299d77f1f31b42dfeb';
+// const client_secret = 'da4ceab20c6d493fbe0b8d55ee441424'
+
 const privateKey = fs.readFileSync("./key.p8").toString();
 const teamId = process.env.teamId;
 const keyId = process.env.keyId;
@@ -57,6 +63,7 @@ app
   .use(cookieParser());
 
 app.get("/login", function (req, res) {
+  console.log(client_secret);
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -75,21 +82,21 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/applemusic", function (req, res) {
-  const token = jwt.sign({}, privateKey, {
-    algorithm: "ES256",
-    expiresIn: "180d",
-    issuer: teamId,
-    header: {
-      alg: "ES256",
-      kid: keyId,
-    },
-  });
+  // const token = jwt.sign({}, privateKey, {
+  //   algorithm: "ES256",
+  //   expiresIn: "180d",
+  //   issuer: teamId,
+  //   header: {
+  //     alg: "ES256",
+  //     kid: keyId,
+  //   },
+  // });
 
   res.redirect(
     "/#" +
       querystring.stringify({
         client: "applemusic",
-        dev_token: token,
+        dev_token: apple_token,
       })
   );
   // res.redirect("https://idmsa.apple.com/IDMSWebAuth/auth?" + querystring.stringify({}))
